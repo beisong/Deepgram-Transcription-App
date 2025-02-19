@@ -1,0 +1,10 @@
+services:
+  dg-fronend:
+    build: .
+    command: sh -c "npm install && npm start"
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    environment:
+    
+    

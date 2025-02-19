@@ -1,0 +1,13 @@
+services:
+  dg-backend:
+    container_name: dgbackend
+    image: dg-backend:1.0
+    build: .
+    command: sh -c "npm install && npm start"
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    environment:
+      # DEEPGRAM_API_KEY: YOURDEEPGRAMAPIKEY
+      DEEPGRAM_API_KEY: 54b7f7e30381f3d3c1c1d01ba7137521c9339719s
+      

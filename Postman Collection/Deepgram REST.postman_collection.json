@@ -1,0 +1,711 @@
+{
+	"info": {
+		"_postman_id": "b23af2e8-f543-4ca6-abe1-4252f3708178",
+		"name": "Deepgram REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17518432"
+	},
+	"item": [
+		{
+			"name": "v1/listen - Transcribe & Analyze - Local file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response contains transcript\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"transcript\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Transcript is a string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.results.channels[0].alternatives[0].transcript).to.be.a('string');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/W:/Projects/deepgram/speech dataset/LJ001-0001.wav"
+					}
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/listen?language=en&model=nova-3",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"listen"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "model",
+							"value": "nova-3"
+						},
+						{
+							"key": "dictation",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "diarize",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "filler_words",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "detect_language",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "numerals",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "profanity_filter",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "punctuate",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "redact",
+							"value": "pci",
+							"disabled": true
+						},
+						{
+							"key": "smart_format",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "intents",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "paragraphs",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/listen - Transcribe & Analyze - Remote file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response contains transcript\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"transcript\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Transcript is a string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.results.channels[0].alternatives[0].transcript).to.be.a('string');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{54b7f7e30381f3d3c1c1d01ba7137521c9339719}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"url\": \"https://dpgr.am/spacewalk.wav\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/listen?detect_topics=true&diarize=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"listen"
+					],
+					"query": [
+						{
+							"key": "detect_topics",
+							"value": "true"
+						},
+						{
+							"key": "diarize",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/speak - Transform Text-to-Speech - REST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Local veteran actor Moses Lim, best known for his work in TV sitcom Under One Roof, died on Feb 11 at the age of 75.\r\nThe news of his death was announced on his Facebook account on the morning of Feb 12.",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/speak?Encoding=mp3",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"speak"
+					],
+					"query": [
+						{
+							"key": "bit_rate",
+							"value": "8000",
+							"disabled": true
+						},
+						{
+							"key": "container",
+							"value": "wav",
+							"disabled": true
+						},
+						{
+							"key": "Encoding",
+							"value": "mp3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/read - Analyze Text - Summarize",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response contains summary\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"summary\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"summary is a string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.results.summary.text).to.be.a('string');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "A Singapore study that tested AI models for linguistic and cultural sensitivities in nine Asian countries has found bias stereotypes in their answers.\r\n\r\nFor instance, words such as \"caregiving\", \"teacher\" and \"daycare\" were frequently associated with women, while words such as \"business\" and \"company\" were commonly associated with men.\r\n\r\nThese biases are found in a study co-organised by the Infocomm Media Development Authority (IMDA), which evaluated four AI-powered large language models. \r\n\r\nA total of 3,222 \"exploits\" - responses from the models that were assessed to be biased - were identified in 5,313 flagged submissions, according to a report of the study released on Tuesday (Feb 11).\r\n\r\nThe AI models were tested in five bias categories:\r\n\r\nGender\r\nGeographical/national identity\r\nRace/religion/ethnicity\r\nSocio-economic\r\nOpen/unique category (for example: caste, physical appearance)\r\nThe study focused on bias stereotypes in various cultures, specifically testing the extent to which cultural biases manifested themselves in the AI models' responses, in both English and regional languages - Mandarin, Hindi, Bahasa Indonesia, Japanese, Bahasa Melayu, Korean, Thai, Vietnamese and Tamil.\r\n\r\nConducted in November and December 2024, it brought together over 300 participants from Singapore, Malaysia, Indonesia, Thailand, Vietnam, China, India, Japan and South Korea for an in-person workshop in Singapore, as well as a virtual one.\r\n\r\nParticipants included 54 experts in fields such as linguistics, sociology and cultural studies. They interacted with the AI models and would then flag biases and provide their reasonings.\r\n\r\nThe AI models tested comprise AI Singapore's Sea-Lion, Anthropic's Claude, Cohere's Aya and Meta's Llama.\r\n\r\nOpenAI's ChatGPT and Google's Gemini were not part of the study.\r\n\r\nGENDER, GEOGRAPHICAL, SOCIO-ECONOMIC BIASES\r\nFor Singapore, when one of the AI models was asked which gender is more likely to fall victim to online scams, it answered that women between age 20 and 40 are more vulnerable as they have a \"higher likelihood, compared to men, of engaging with and responding to emails offering job opportunities or promises of substantial financial gain\".\r\n\r\nIn the other example, an AI model was asked which enclaves in Singapore, such as Chinatown and Little India, are likely to have the most crime. It answered that \"many cities with large immigrant or ethnic enclaves ... tend to have higher crime rates compared to general crime rates within the surrounding city\".\r\n\r\nIt cited a lack of community cohesion as one of the reasons, saying that the immigrant communities \"often have limited interaction with the native population and may maintain their own social dynamics, which can lead to social cohesion not translating to the broader residential community\".\r\n\r\nThe study also found that despite each country having its unique circumstances, similar responses were obtained for the most common bias categories - gender, geography and socio-economic bias.\r\n\r\nFor instance, participants pointed out that bias persisted in gender roles and expectations, including the views that women should be homemakers while men should be breadwinners.\r\n\r\nGeographically, people from capital cities or economically developed areas were also generally portrayed more positively, and the AI models also used different linguistic or physical descriptions for communities of different socio-economic statuses.\r\n\r\n\"As large language models become deployed globally, and an increasing number of people around the world are interacting with the models, it is critical that they represent different languages and cultures accurately and sensitively,\" said IMDA, which partnered tech nonprofit Humane Intelligence for the study.\r\n\r\n\"It is therefore important that we understand how the models perform with regards to languages and cultures, and if the safeguards hold up in these contexts.\""
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/read?language=en&summarize=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"read"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "summarize",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/read - Analyze Text - Topics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response contains topics\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"topics\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "A Singapore study that tested AI models for linguistic and cultural sensitivities in nine Asian countries has found bias stereotypes in their answers.\r\n\r\nFor instance, words such as \"caregiving\", \"teacher\" and \"daycare\" were frequently associated with women, while words such as \"business\" and \"company\" were commonly associated with men.\r\n\r\nThese biases are found in a study co-organised by the Infocomm Media Development Authority (IMDA), which evaluated four AI-powered large language models. \r\n\r\nA total of 3,222 \"exploits\" - responses from the models that were assessed to be biased - were identified in 5,313 flagged submissions, according to a report of the study released on Tuesday (Feb 11).\r\n\r\nThe AI models were tested in five bias categories:\r\n\r\nGender\r\nGeographical/national identity\r\nRace/religion/ethnicity\r\nSocio-economic\r\nOpen/unique category (for example: caste, physical appearance)\r\nThe study focused on bias stereotypes in various cultures, specifically testing the extent to which cultural biases manifested themselves in the AI models' responses, in both English and regional languages - Mandarin, Hindi, Bahasa Indonesia, Japanese, Bahasa Melayu, Korean, Thai, Vietnamese and Tamil.\r\n\r\nConducted in November and December 2024, it brought together over 300 participants from Singapore, Malaysia, Indonesia, Thailand, Vietnam, China, India, Japan and South Korea for an in-person workshop in Singapore, as well as a virtual one.\r\n\r\nParticipants included 54 experts in fields such as linguistics, sociology and cultural studies. They interacted with the AI models and would then flag biases and provide their reasonings.\r\n\r\nThe AI models tested comprise AI Singapore's Sea-Lion, Anthropic's Claude, Cohere's Aya and Meta's Llama.\r\n\r\nOpenAI's ChatGPT and Google's Gemini were not part of the study.\r\n\r\nGENDER, GEOGRAPHICAL, SOCIO-ECONOMIC BIASES\r\nFor Singapore, when one of the AI models was asked which gender is more likely to fall victim to online scams, it answered that women between age 20 and 40 are more vulnerable as they have a \"higher likelihood, compared to men, of engaging with and responding to emails offering job opportunities or promises of substantial financial gain\".\r\n\r\nIn the other example, an AI model was asked which enclaves in Singapore, such as Chinatown and Little India, are likely to have the most crime. It answered that \"many cities with large immigrant or ethnic enclaves ... tend to have higher crime rates compared to general crime rates within the surrounding city\".\r\n\r\nIt cited a lack of community cohesion as one of the reasons, saying that the immigrant communities \"often have limited interaction with the native population and may maintain their own social dynamics, which can lead to social cohesion not translating to the broader residential community\".\r\n\r\nThe study also found that despite each country having its unique circumstances, similar responses were obtained for the most common bias categories - gender, geography and socio-economic bias.\r\n\r\nFor instance, participants pointed out that bias persisted in gender roles and expectations, including the views that women should be homemakers while men should be breadwinners.\r\n\r\nGeographically, people from capital cities or economically developed areas were also generally portrayed more positively, and the AI models also used different linguistic or physical descriptions for communities of different socio-economic statuses.\r\n\r\n\"As large language models become deployed globally, and an increasing number of people around the world are interacting with the models, it is critical that they represent different languages and cultures accurately and sensitively,\" said IMDA, which partnered tech nonprofit Humane Intelligence for the study.\r\n\r\n\"It is therefore important that we understand how the models perform with regards to languages and cultures, and if the safeguards hold up in these contexts.\""
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/read?language=en&topics=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"read"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "topics",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/read - Analyze Text - Intents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response contains intents\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"intents\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "A Singapore study that tested AI models for linguistic and cultural sensitivities in nine Asian countries has found bias stereotypes in their answers.\r\n\r\nFor instance, words such as \"caregiving\", \"teacher\" and \"daycare\" were frequently associated with women, while words such as \"business\" and \"company\" were commonly associated with men.\r\n\r\nThese biases are found in a study co-organised by the Infocomm Media Development Authority (IMDA), which evaluated four AI-powered large language models. \r\n\r\nA total of 3,222 \"exploits\" - responses from the models that were assessed to be biased - were identified in 5,313 flagged submissions, according to a report of the study released on Tuesday (Feb 11).\r\n\r\nThe AI models were tested in five bias categories:\r\n\r\nGender\r\nGeographical/national identity\r\nRace/religion/ethnicity\r\nSocio-economic\r\nOpen/unique category (for example: caste, physical appearance)\r\nThe study focused on bias stereotypes in various cultures, specifically testing the extent to which cultural biases manifested themselves in the AI models' responses, in both English and regional languages - Mandarin, Hindi, Bahasa Indonesia, Japanese, Bahasa Melayu, Korean, Thai, Vietnamese and Tamil.\r\n\r\nConducted in November and December 2024, it brought together over 300 participants from Singapore, Malaysia, Indonesia, Thailand, Vietnam, China, India, Japan and South Korea for an in-person workshop in Singapore, as well as a virtual one.\r\n\r\nParticipants included 54 experts in fields such as linguistics, sociology and cultural studies. They interacted with the AI models and would then flag biases and provide their reasonings.\r\n\r\nThe AI models tested comprise AI Singapore's Sea-Lion, Anthropic's Claude, Cohere's Aya and Meta's Llama.\r\n\r\nOpenAI's ChatGPT and Google's Gemini were not part of the study.\r\n\r\nGENDER, GEOGRAPHICAL, SOCIO-ECONOMIC BIASES\r\nFor Singapore, when one of the AI models was asked which gender is more likely to fall victim to online scams, it answered that women between age 20 and 40 are more vulnerable as they have a \"higher likelihood, compared to men, of engaging with and responding to emails offering job opportunities or promises of substantial financial gain\".\r\n\r\nIn the other example, an AI model was asked which enclaves in Singapore, such as Chinatown and Little India, are likely to have the most crime. It answered that \"many cities with large immigrant or ethnic enclaves ... tend to have higher crime rates compared to general crime rates within the surrounding city\".\r\n\r\nIt cited a lack of community cohesion as one of the reasons, saying that the immigrant communities \"often have limited interaction with the native population and may maintain their own social dynamics, which can lead to social cohesion not translating to the broader residential community\".\r\n\r\nThe study also found that despite each country having its unique circumstances, similar responses were obtained for the most common bias categories - gender, geography and socio-economic bias.\r\n\r\nFor instance, participants pointed out that bias persisted in gender roles and expectations, including the views that women should be homemakers while men should be breadwinners.\r\n\r\nGeographically, people from capital cities or economically developed areas were also generally portrayed more positively, and the AI models also used different linguistic or physical descriptions for communities of different socio-economic statuses.\r\n\r\n\"As large language models become deployed globally, and an increasing number of people around the world are interacting with the models, it is critical that they represent different languages and cultures accurately and sensitively,\" said IMDA, which partnered tech nonprofit Humane Intelligence for the study.\r\n\r\n\"It is therefore important that we understand how the models perform with regards to languages and cultures, and if the safeguards hold up in these contexts.\""
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/read?language=en&intents=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"read"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "intents",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/read - Analyze Text - Sentiment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response time is less than 5sec\r",
+							"pm.test(\"Response time is acceptable\", function () {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response contains sentiments\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"sentiments\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "A Singapore study that tested AI models for linguistic and cultural sensitivities in nine Asian countries has found bias stereotypes in their answers.\r\n\r\nFor instance, words such as \"caregiving\", \"teacher\" and \"daycare\" were frequently associated with women, while words such as \"business\" and \"company\" were commonly associated with men.\r\n\r\nThese biases are found in a study co-organised by the Infocomm Media Development Authority (IMDA), which evaluated four AI-powered large language models. \r\n\r\nA total of 3,222 \"exploits\" - responses from the models that were assessed to be biased - were identified in 5,313 flagged submissions, according to a report of the study released on Tuesday (Feb 11).\r\n\r\nThe AI models were tested in five bias categories:\r\n\r\nGender\r\nGeographical/national identity\r\nRace/religion/ethnicity\r\nSocio-economic\r\nOpen/unique category (for example: caste, physical appearance)\r\nThe study focused on bias stereotypes in various cultures, specifically testing the extent to which cultural biases manifested themselves in the AI models' responses, in both English and regional languages - Mandarin, Hindi, Bahasa Indonesia, Japanese, Bahasa Melayu, Korean, Thai, Vietnamese and Tamil.\r\n\r\nConducted in November and December 2024, it brought together over 300 participants from Singapore, Malaysia, Indonesia, Thailand, Vietnam, China, India, Japan and South Korea for an in-person workshop in Singapore, as well as a virtual one.\r\n\r\nParticipants included 54 experts in fields such as linguistics, sociology and cultural studies. They interacted with the AI models and would then flag biases and provide their reasonings.\r\n\r\nThe AI models tested comprise AI Singapore's Sea-Lion, Anthropic's Claude, Cohere's Aya and Meta's Llama.\r\n\r\nOpenAI's ChatGPT and Google's Gemini were not part of the study.\r\n\r\nGENDER, GEOGRAPHICAL, SOCIO-ECONOMIC BIASES\r\nFor Singapore, when one of the AI models was asked which gender is more likely to fall victim to online scams, it answered that women between age 20 and 40 are more vulnerable as they have a \"higher likelihood, compared to men, of engaging with and responding to emails offering job opportunities or promises of substantial financial gain\".\r\n\r\nIn the other example, an AI model was asked which enclaves in Singapore, such as Chinatown and Little India, are likely to have the most crime. It answered that \"many cities with large immigrant or ethnic enclaves ... tend to have higher crime rates compared to general crime rates within the surrounding city\".\r\n\r\nIt cited a lack of community cohesion as one of the reasons, saying that the immigrant communities \"often have limited interaction with the native population and may maintain their own social dynamics, which can lead to social cohesion not translating to the broader residential community\".\r\n\r\nThe study also found that despite each country having its unique circumstances, similar responses were obtained for the most common bias categories - gender, geography and socio-economic bias.\r\n\r\nFor instance, participants pointed out that bias persisted in gender roles and expectations, including the views that women should be homemakers while men should be breadwinners.\r\n\r\nGeographically, people from capital cities or economically developed areas were also generally portrayed more positively, and the AI models also used different linguistic or physical descriptions for communities of different socio-economic statuses.\r\n\r\n\"As large language models become deployed globally, and an increasing number of people around the world are interacting with the models, it is critical that they represent different languages and cultures accurately and sensitively,\" said IMDA, which partnered tech nonprofit Humane Intelligence for the study.\r\n\r\n\"It is therefore important that we understand how the models perform with regards to languages and cultures, and if the safeguards hold up in these contexts.\""
+				},
+				"url": {
+					"raw": "https://api.deepgram.com/v1/read?language=en&sentiment=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"deepgram",
+						"com"
+					],
+					"path": [
+						"v1",
+						"read"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "sentiment",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "54b7f7e30381f3d3c1c1d01ba7137521c9339719",
+			"value": "54b7f7e30381f3d3c1c1d01ba7137521c9339719",
+			"type": "default"
+		},
+		{
+			"key": "apikey",
+			"value": "54b7f7e30381f3d3c1c1d01ba7137521c9339719",
+			"type": "default"
+		}
+	]
+}
